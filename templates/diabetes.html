@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f1f1f1;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        form label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 6px;
+            margin-left: 10px;
+            width: 200px;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+        }
+        button {
+            margin-top: 16px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #27ae60;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        .prediction {
+            margin-top: 25px;
+            color: #c0392b;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Diabetes Prediction Form</h2>
+    <form id="diabetesForm">
+        <label>Patient ID: <input type="text" name="ID" required></label>
+        <label>No_Pation: <input type="text" name="No_Pation" required></label>
+        <label>Gender: 
+            <select name="Gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </label>
+        <label>Age: <input type="number" name="AGE" required min="0"></label>
+        <label>Urea: <input type="number" step="any" name="Urea" required></label>
+        <label>Cr: <input type="number" step="any" name="Cr" required></label>
+        <label>Chol: <input type="number" step="any" name="Chol" required></label>
+        <label>TG: <input type="number" step="any" name="TG" required></label>
+        <label>HDL: <input type="number" step="any" name="HDL" required></label>
+        <label>LDL: <input type="number" step="any" name="LDL" required></label>
+        <label>VLDL: <input type="number" step="any" name="VLDL" required></label>
+        <label>BMI: <input type="number" step="any" name="BMI" required></label>
+        <button type="submit">Predict</button>
+    </form>
+
+    <div id="predictionResult" class="prediction"></div>
+
+    <script>
+        document.getElementById('diabetesForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather inputs
+            const formData = new FormData(event.target);
+            let values = {};
+            formData.forEach((value, key) => values[key] = value);
+
+            // Placeholder for actual prediction logic
+            // For demo, we show a dummy message
+            let resultText = `Prediction based on submitted values: Diabetes likelihood Unknown (model not integrated)`;
+
+            document.getElementById('predictionResult').textContent = resultText;
+        });
+    </script>
+</body>
+</html>
