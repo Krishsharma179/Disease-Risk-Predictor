@@ -1,91 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Diabetes Prediction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Form</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 30px;
-            background-color: #f1f1f1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
         h2 {
-            color: #2c3e50;
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
         }
-        form label {
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
             display: block;
-            margin-bottom: 12px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
         }
-        input, select {
-            padding: 6px;
-            margin-left: 10px;
-            width: 200px;
-            border-radius: 4px;
-            border: 1px solid #bbb;
-        }
-        button {
-            margin-top: 16px;
-            padding: 10px 20px;
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
             font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        select {
             cursor: pointer;
-            background-color: #27ae60;
-            border: none;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #219150;
-        }
-        .prediction {
-            margin-top: 25px;
-            color: #c0392b;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Input animations */
+        input[type="number"],
+        select {
+            position: relative;
+        }
+
+        input[type="number"]:valid,
+        select:valid {
+            border-color: #27ae60;
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a67d8;
         }
     </style>
 </head>
 <body>
-    <h2>Diabetes Prediction Form</h2>
-    <form id="diabetesForm">
-        <label>Patient ID: <input type="text" name="ID" required></label>
-        <label>No_Pation: <input type="text" name="No_Pation" required></label>
-        <label>Gender: 
-            <select name="Gender" required>
-                <option value="" disabled selected>Select gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-        </label>
-        <label>Age: <input type="number" name="AGE" required min="0"></label>
-        <label>Urea: <input type="number" step="any" name="Urea" required></label>
-        <label>Cr: <input type="number" step="any" name="Cr" required></label>
-        <label>Chol: <input type="number" step="any" name="Chol" required></label>
-        <label>TG: <input type="number" step="any" name="TG" required></label>
-        <label>HDL: <input type="number" step="any" name="HDL" required></label>
-        <label>LDL: <input type="number" step="any" name="LDL" required></label>
-        <label>VLDL: <input type="number" step="any" name="VLDL" required></label>
-        <label>BMI: <input type="number" step="any" name="BMI" required></label>
-        <button type="submit">Predict</button>
-    </form>
+    <div class="container">
+        <h2>Diabetes Prediction Form</h2>
+        
+        <form action="/diabetes_predict" method="POST">
+            <div class="form-group">
+                <label for="gender">Gender <span class="required">*</span></label>
+                <select id="gender" name="Gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
 
-    <div id="predictionResult" class="prediction"></div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" name="AGE" id="age" required min="0" step="1" placeholder="Enter your age">
+            </div>
 
-    <script>
-        document.getElementById('diabetesForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            <div class="form-group">
+                <label for="urea">Urea:</label>
+                <input type="number" name="Urea" id="urea" required step="any" placeholder="Enter urea level">
+            </div>
 
-            // Gather inputs
-            const formData = new FormData(event.target);
-            let values = {};
-            formData.forEach((value, key) => values[key] = value);
+            <div class="form-group">
+                <label for="cr">Creatinine (Cr):</label>
+                <input type="number" name="Cr" id="cr" required step="any" placeholder="Enter creatinine level">
+            </div>
 
-            // Placeholder for actual prediction logic
-            // For demo, we show a dummy message
-            let resultText = `Prediction based on submitted values: Diabetes likelihood Unknown (model not integrated)`;
+            <div class="form-group">
+                <label for="chol">Cholesterol:</label>
+                <input type="number" name="Chol" id="chol" required step="any" placeholder="Enter cholesterol level">
+            </div>
 
-            document.getElementById('predictionResult').textContent = resultText;
-        });
-    </script>
+            <div class="form-group">
+                <label for="tg">Triglycerides (TG):</label>
+                <input type="number" name="TG" id="tg" required step="any" placeholder="Enter triglycerides level">
+            </div>
+
+            <div class="form-group">
+                <label for="hdl">HDL:</label>
+                <input type="number" name="HDL" id="hdl" required step="any" placeholder="Enter HDL level">
+            </div>
+
+            <div class="form-group">
+                <label for="ldl">LDL:</label>
+                <input type="number" name="LDL" id="ldl" required step="any" placeholder="Enter LDL level">
+            </div>
+
+            <div class="form-group">
+                <label for="vldl">VLDL:</label>
+                <input type="number" name="VLDL" id="vldl" required step="any" placeholder="Enter VLDL level">
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="number" name="BMI" id="bmi" required step="any" placeholder="Enter BMI">
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+            <h3><p>There is a probability of {{ val1 }} % of {{ val2 }}</p></h3>
+        </div>
+    </div>
 </body>
 </html>

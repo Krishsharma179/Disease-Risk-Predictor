@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Prediction Home</title>
     <style>
-       * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -15,9 +16,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center;     /* Center vertically */
-            text-align: center;
+            justify-content: center;
+            align-items: center;
             color: #2c3e50;
             padding: 20px;
         }
@@ -27,13 +27,17 @@
             border-radius: 15px;
             padding: 40px 60px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            width: 350px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
             font-size: 2.4rem;
             margin-bottom: 25px;
             font-weight: 700;
+            color: #2c3e50;
         }
 
         ul {
@@ -46,7 +50,7 @@
 
         a {
             display: block;
-            padding: 15px 0;
+            padding: 15px 20px;
             background-color: #3498db;
             color: white;
             font-size: 1.2rem;
@@ -54,8 +58,10 @@
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1.2px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         a:hover {
@@ -64,19 +70,67 @@
             box-shadow: 0 6px 15px rgba(41, 128, 185, 0.4);
         }
 
+        a:active {
+            transform: translateY(-1px);
+        }
+
+        /* Disabled state for coming soon links */
+        a.coming-soon {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        a.coming-soon:hover {
+            background-color: #95a5a6;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 40px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            a {
+                font-size: 1.1rem;
+                padding: 12px 18px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>Disease Likelihood Prediction</h2>
-    <ul>
-        <li><a href="diabetes.html">Diabetes</a></li>
-        <li><a href="#">Heart Diseases (Coming Soon)</a></li>
-        <li><a href="#">Cancer (Coming Soon)</a></li>
-    </ul>
+    <div class="container">
+        <h1>Disease Likelihood Prediction</h1>
+        <ul>
+            <li><a href="/diabetes_predict">Diabetes</a></li>
+            <li><a href="#" class="coming-soon" onclick="return false;">Heart Diseases (Coming Soon)</a></li>
+        </ul>
+    </div>
 
     <script>
-        // You can add any JavaScript here for homepage interaction if needed
+        // Homepage interaction functionality
         console.log('Home page loaded');
+        
+        // Add click handlers for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a');
+            
+            links.forEach(link => {
+                if (!link.classList.contains('coming-soon')) {
+                    link.addEventListener('click', function(e) {
+                        // Add loading state or navigation logic here
+                        console.log('Navigating to:', this.href);
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
