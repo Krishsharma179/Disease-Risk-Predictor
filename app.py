@@ -65,8 +65,10 @@ def prediction():
  
 
       return render_template('diabetes.html',val1=largest_element(result_lst)*100,val2=place(result_lst,largest))
-   
 
+@app.route('/predict_cad')
+def inde():
+    return render_template('cad.html')
 
 
 if __name__=="__main__":

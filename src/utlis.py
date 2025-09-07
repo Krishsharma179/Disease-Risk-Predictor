@@ -4,7 +4,7 @@ import dill
 from src.exception import CustomException
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import r2_score
-
+from sklearn.metrics import accuracy_score
 def save_object(file_path:str,obj):
     """
     This function save the object
@@ -34,9 +34,9 @@ def evaluate_model(x_train,y_train,x_test,y_test,models:dict,param):
             model.fit(x_train,y_train)
 
             y_pred=model.predict(x_test)
-            r2score=r2_score(y_test,y_pred)
+            accuracy=accuracy_score(y_test,y_pred)
 
-            score[list(models.keys())[i]]=r2score
+            score[list(models.keys())[i]]=accuracy
 
           return score
      except Exception as e :
