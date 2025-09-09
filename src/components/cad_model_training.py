@@ -48,12 +48,12 @@ class initiate_model_trainer:
                         )
                         models = {
                             "LogisticRegression": LogisticRegression(),
-                            "KNeighborsClassifier": KNeighborsClassifier(),
+                            # "KNeighborsClassifier": KNeighborsClassifier(),
                             "AdaBoostClassifier": AdaBoostClassifier(),
                             "RandomForestClassifier": RandomForestClassifier(),
-                            # "DecisionTreeClassifier": DecisionTreeClassifier(),
-                            # "GradientBoostingClassifier": GradientBoostingClassifier(),
-                            # "XGBRFClassifier": XGBRFClassifier()
+                            "DecisionTreeClassifier": DecisionTreeClassifier(),
+                            "GradientBoostingClassifier": GradientBoostingClassifier(),
+                            "XGBRFClassifier": XGBRFClassifier()
                         }
 
                         params_classifier = {
@@ -66,11 +66,11 @@ class initiate_model_trainer:
                                 },
                                 
 
-                            "KNeighborsClassifier": {
-                                'n_neighbors': [3, 5, 7, 9],
-                                'weights': ['uniform', 'distance'],
-                                'metric': ['euclidean', 'manhattan', 'minkowski']
-                            },
+                            # "KNeighborsClassifier": {
+                            #     'n_neighbors': [3, 5, 7, 9],
+                            #     'weights': ['uniform', 'distance'],
+                            #     'metric': ['euclidean', 'manhattan', 'minkowski']
+                            # },
 
                             "AdaBoostClassifier": {
                                 'n_estimators': [50, 100, 150, 200],
@@ -92,29 +92,29 @@ class initiate_model_trainer:
                                 'criterion': ['gini', 'entropy'],
                                 'max_depth': [None, 10, 20, 30],
                                 'min_samples_split': [2, 5, 10],
-                                # 'min_samples_leaf': [1, 2, 4],
-                                # 'max_features': ['sqrt', 'log2', None],  # Removed 'auto' to avoid warnings
-                                # 'splitter': ['best', 'random']
+                                'min_samples_leaf': [1, 2, 4],
+                                'max_features': ['sqrt', 'log2', None],  # Removed 'auto' to avoid warnings
+                                'splitter': ['best', 'random']
                             },
 
-                            # "GradientBoostingClassifier": {
-                            #     'n_estimators': [50, 100, 200],
-                            #     'learning_rate': [0.01, 0.05, 0.1, 0.2],
-                            #     'max_depth': [3, 5, 7],
-                            #     # 'min_samples_split': [2, 5],
-                            #     # 'min_samples_leaf': [1, 2],
-                            #     # 'subsample': [0.6, 0.8, 1.0],
-                            #     # 'max_features': ['sqrt', 'log2', None]  # Removed 'auto' for consistency
-                            # },
+                                "GradientBoostingClassifier": {
+                                    'n_estimators': [50, 100, 200],
+                                    'learning_rate': [0.01, 0.05, 0.1, 0.2],
+                                    'max_depth': [3, 5, 7],
+                                    'min_samples_split': [2, 5],
+                                    'min_samples_leaf': [1, 2],
+                                    'subsample': [0.6, 0.8, 1.0],
+                                    'max_features': ['sqrt', 'log2', None]  # Removed 'auto' for consistency
+                                },
 
-                            # "XGBRFClassifier": {
-                            #     'n_estimators': [50, 100, 200],
-                            #     'max_depth': [3, 5, 7],
-                            # #     'learning_rate': [0.01, 0.1],
-                            # #     'subsample': [0.6, 0.8, 1.0],
-                            # #     'colsample_bynode': [0.6, 0.8, 1.0],
-                            # #     'min_child_weight': [1, 3, 5]
-                            # }
+                            "XGBRFClassifier": {
+                                'n_estimators': [50, 100, 200],
+                                'max_depth': [3, 5, 7],
+                                'learning_rate': [0.01, 0.1],
+                                'subsample': [0.6, 0.8, 1.0],
+                                'colsample_bynode': [0.6, 0.8, 1.0],
+                                'min_child_weight': [1, 3, 5]
+                            }
                         }
 
                         model_report:dict=evaluate_model(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models,param=params_classifier)

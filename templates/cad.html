@@ -3,167 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Disease Prediction Form</title>
+    <title>Heart Disease Prediction</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            body {
+                    min-height: 100vh;
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Montserrat', Arial, sans-serif;
+                    background: linear-gradient(135deg, #7f7fd5, #86a8e7, #91eac9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+                .container {
+                    max-width: 450px;
+                    width: 95%;
+                    margin: 30px auto;
+                    background: rgba(255,255,255,0.95);
+                    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.14);
+                    border-radius: 22px;
+                    padding: 35px 32px 24px 32px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                }
 
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+                h2 {
+                    text-align: center;
+                    color: #23255a;
+                    font-weight: 700;
+                    margin-bottom: 24px;
+                    letter-spacing: 0.2px;
+                }
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: 600;
-        }
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 14px;
+                }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+                label {
+                    font-weight: 600;
+                    margin-bottom: 7px;
+                    color: #23255a;
+                    font-size: 16px;
+                }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 500;
-            font-size: 14px;
-        }
+                input[type="number"],
+                select {
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    border: 1.5px solid #e4e8fb;
+                    background: #f3f5f8;
+                    font-size: 16px;
+                    transition: border-color 0.22s;
+                    font-family: inherit;
+                    margin-bottom: 3px;
+                }
+                input[type="number"]:focus,
+                select:focus {
+                    border-color: #715ae7;
+                    outline: none;
+                }
 
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
+                button[type="submit"] button {
+                            width: 100%;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            color: white;
+                            padding: 15px;
+                            border: none;
+                            border-radius: 10px;
+                            font-size: 18px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            margin-top: 20px;
+                        }
+        
 
-        input[type="number"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform: translateY(-1px);
-        }
+                button[type="submit"]:hover,
+                button[type="submit"]:focus {
+                    background: linear-gradient(95deg, #AD1DEB 0%, #6E72FC 100%);
+                    box-shadow: 0 4px 24px 0 rgba(80,120,200,0.12);
+                }
 
-        select {
-            cursor: pointer;
-        }
+                .required {
+                    color: #E33939;
+                    margin-left: 4px;
+                    font-size: 14px;
+                }
 
-        button {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
+                .result {
+                    margin-top: 22px;
+                    text-align: center;
+                    font-size: 20px;
+                    color: #22295f;
+                    font-weight: bold;
+                    letter-spacing: 0.2px;
+                    background: #f4f5fb;
+                    border-radius: 10px;
+                    padding: 14px 8px;
+                    border-left: 4px solid #8269e3;
+                    box-shadow: 0 1px 8px 0 rgba(120,120,160,0.05);
+                }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
 
-        button:active {
-            transform: translateY(0);
-        }
-
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 10px;
-            text-align: center;
-            border-left: 4px solid #667eea;
-        }
-
-        .result h3 {
-            color: #333;
-            font-size: 18px;
-        }
-
-        .required {
-            color: #e74c3c;
-        }
-
-        /* Responsive design */
-        @media (max-width: 600px) {
-            .container {
-                margin: 10px;
-                padding: 20px;
-            }
-            
-            h2 {
-                font-size: 24px;
-            }
-        }
-
-        /* Input animations */
-        input[type="number"],
-        select {
-            position: relative;
-        }
-
-        input[type="number"]:valid,
-        select:valid {
-            border-color: #27ae60;
-        }
-
-        /* Custom scrollbar for better aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #5a67d8;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Heart Disease Prediction Form</h2>
+        <h2>Heart Disease Prediction</h2>
         
-        <form action="/cad_predict" method="POST">
+        <form action="/predict_cad" method="POST">
             <div class="form-group">
                 <label for="sex">Sex <span class="required">*</span></label>
                 <select id="sex" name="sex" required>
@@ -180,7 +132,7 @@
 
             <div class="form-group">
                 <label for="chest_pain_type">Chest Pain Type:</label>
-                <select id="chest_pain_type" name="chest pain type" required>
+                <select id="chest_pain_type" name="chest_pain_type" required>
                     <option value="">Select Chest Pain Type</option>
                     <option value="1">Typical Angina</option>
                     <option value="2">Atypical Angina</option>
@@ -191,7 +143,7 @@
 
             <div class="form-group">
                 <label for="resting_bp_s">Resting Blood Pressure:</label>
-                <input type="number" name="resting bp s" id="resting_bp_s" required step="any" placeholder="Enter resting blood pressure">
+                <input type="number" name="resting_bp_s" id="resting_bp_s" required step="any" placeholder="Enter resting blood pressure">
             </div>
 
             <div class="form-group">
@@ -201,7 +153,7 @@
 
             <div class="form-group">
                 <label for="fasting_blood_sugar">Fasting Blood Sugar:</label>
-                <select id="fasting_blood_sugar" name="fasting blood sugar" required>
+                <select id="fasting_blood_sugar" name="fasting_blood_sugar" required>
                     <option value="">Select</option>
                     <option value="0">≤ 120 mg/dl</option>
                     <option value="1">> 120 mg/dl</option>
@@ -210,7 +162,7 @@
 
             <div class="form-group">
                 <label for="resting_ecg">Resting ECG:</label>
-                <select id="resting_ecg" name="resting ecg" required>
+                <select id="resting_ecg" name="resting_ecg" required>
                     <option value="">Select ECG Result</option>
                     <option value="0">Normal</option>
                     <option value="1">ST-T Wave Abnormality</option>
@@ -220,12 +172,12 @@
 
             <div class="form-group">
                 <label for="max_heart_rate">Maximum Heart Rate:</label>
-                <input type="number" name="max heart rate" id="max_heart_rate" required step="any" placeholder="Enter maximum heart rate">
+                <input type="number" name="max_heart_rate" id="max_heart_rate" required step="any" placeholder="Enter maximum heart rate">
             </div>
 
             <div class="form-group">
                 <label for="exercise_angina">Exercise Induced Angina:</label>
-                <select id="exercise_angina" name="exercise angina" required>
+                <select id="exercise_angina" name="exercise_angina" required>
                     <option value="">Select</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
@@ -239,7 +191,7 @@
 
             <div class="form-group">
                 <label for="st_slope">ST Slope:</label>
-                <select id="st_slope" name="ST slope" required>
+                <select id="st_slope" name="st_slope" required>
                     <option value="">Select ST Slope</option>
                     <option value="1">Upsloping</option>
                     <option value="2">Flat</option>
@@ -251,7 +203,7 @@
         </form>
 
         <div class="result">
-            <h3><p>There is a probability of {{ val1 }} % of {{ val2 }}</p></h3>
+            <h3><p>{{ result }}</p></h3>
         </div>
     </div>
 </body>
