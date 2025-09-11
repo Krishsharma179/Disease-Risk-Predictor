@@ -93,10 +93,36 @@ def pred():
       predict_data=Cad_predictpipeline()
       result,result_prob=predict_data.predict(pred_data)
 
-      
+      result_pro=result_prob[0]
+      name={
+          0:"absence of disease",
+          1:"Presence of this dieases"
+      }
+
+
+
+      def largest(lst):
+         large=0
+         index=0
+         first_element=lst[0]
+         second_element=lst[1]
+
+         if first_element>second_element:
+                  large=first_element
+                  index=0
+         else:
+                  large=second_element
+                  index=1
+         return large ,index        
+
+      result,index=largest(result_pro)
+      result=round(result, 2)
+      ind=name[index]       
+                        
+    
  
 
-      return render_template('cad.html',result=result[0])
+      return render_template('cad.html',result=result*100,index=ind)
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',debug=True)   
