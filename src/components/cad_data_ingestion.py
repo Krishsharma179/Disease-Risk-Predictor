@@ -42,7 +42,6 @@ data_ingestion=Dateingestion()
 train_cad_data,test_cad_data=data_ingestion.initiate_data_ingestion()
 data_transformation=Init_DatatransFormation()
 train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_cad_data,test_cad_data)
-# print(test_arr)
 model_trainer=initiate_model_trainer()
 print(model_trainer.initiate_model_training(train_arr,test_arr))
 

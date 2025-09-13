@@ -14,7 +14,7 @@ class DataingestionConfig:
         train_diabetes_data:str=os.path.join('artifact','train_diabetes_data')
         test_diabetes_data:str=os.path.join('artifact','test_diabetes_data')
         raw_diabetes_data:str=os.path.join('artifact','raw_diabetes_data')
-    
+        
 class Dataingestion:
    def __init__(self):
        self.data_ingestion_config=DataingestionConfig()

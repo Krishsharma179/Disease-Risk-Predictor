@@ -35,6 +35,8 @@ def prediction():
          BMI=request.form.get('BMI')
 
       )
+     
+
       pred_data=data.covert_data_into_df()
 
       predict_data=Predictpipeline()
@@ -115,8 +117,8 @@ def pred():
                   index=1
          return large ,index        
 
-      result,index=largest(result_pro)
-      result=round(result, 2)
+      r,index=largest(result_pro)
+      result=round(r, 2)
       ind=name[index]       
                         
     
